@@ -8,28 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="announcement-bar">
-        <span class="announcement-new">NEW</span> Introducing Orchestra — AI agents that screen, schedule, message, and more. <a href="#" class="announcement-link">LEARN MORE</a>
-    </div>
-    <header class="header">
-        <div class="container header-content">
-            <img src="assets/hire22-logo.svg" alt="Hire22.ai Logo" class="logo">
-            <nav class="nav" id="nav-menu">
-                <a href="#" class="nav-link">Why Hire22.ai</a>
-                <a href="#" class="nav-link">About Us</a>
-                <a href="#" class="nav-link">Login</a>
-                <a href="#" class="nav-link nav-link-register">Register</a>
-                <a href="#" class="nav-link nav-link-employer">Employer Zone</a>
-                <button class="theme-toggle mobile-theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">🌙</button>
-            </nav>
-            <div class="header-controls">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <header class="header custom-navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="assets/hire22-logo.svg" alt="Hire22.ai Logo" class="logo">
             </div>
+            <nav class="navbar-menu" id="nav-menu">
+                <a href="#" class="navbar-link">Services</a>
+                <a href="#" class="navbar-link">Industries</a>
+                <a href="#" class="navbar-link">Pricing</a>
+                <a href="#" class="navbar-link">Team</a>
+                <a href="#" class="navbar-link">FAQ</a>
+            </nav>
+            <div class="navbar-overlay" id="navbar-overlay"></div>
+            <div class="navbar-contact-wrap">
+                <a href="#" class="navbar-contact-btn">Contact</a>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
     <div class="header-spacer"></div>
@@ -47,6 +47,18 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section class="about-us-section">
+      <div class="about-us-container">
+        <div class="about-us-image">
+          <img src="assets/hire-poster2.png" alt="Hire22 Team" class="about-us-img">
+        </div>
+        <div class="about-us-content">
+          <h2 class="about-us-title">About us</h2>
+          <p class="about-us-desc">At Hire22, we're passionate about transforming the recruitment landscape through innovative technology and human-centered design. Our platform bridges the gap between exceptional talent and forward-thinking companies.</p>
+          <p class="about-us-desc">With cutting-edge AI-powered matching algorithms, we've revolutionized how organizations discover top-tier candidates and how professionals find their dream opportunities.</p>
+        </div>
+      </div>
     </section>
     <section class="mission-section">
       <div class="mission-container">
@@ -86,10 +98,11 @@
       <div class="story-container">
         <div class="story-content">
           <div class="story-label">OUR STORY</div>
-          <h2 class="story-title">From a vision to India’s first anonymous job platform</h2>
-          <p class="story-desc">Hey! We’re the founders of Hire22. Our journey began with a simple idea: empower professionals to explore new opportunities without risking their privacy.</p>
-          <p class="story-desc">We saw how traditional hiring exposed candidates’ identities too early, leading to missed opportunities and privacy concerns. So, we set out to build a platform where talent and employers could connect securely, with full control over when and how to reveal their details.</p>
-          <p class="story-desc">Today, Hire22 is transforming how mid and senior professionals find their next big role—confidentially, efficiently, and on their own terms.</p>
+          <h2 class="story-title">From a vision to India's first anonymous job platform</h2>
+          <p class="story-desc">Hey! We're the founders of Hire22. Our journey began in 2022 when we identified a critical gap in the recruitment industry. As professionals ourselves, we experienced firsthand how traditional hiring processes often exposed candidates' identities too early, leading to missed opportunities and privacy concerns.</p>
+          <p class="story-desc">We saw talented professionals hesitating to explore new opportunities because they feared their current employers would find out. Companies were missing out on exceptional candidates who couldn't risk their privacy. This inspired us to create a revolutionary solution.</p>
+          <p class="story-desc">With backgrounds in technology and recruitment, we built Hire22 as India's first anonymous job platform. Our innovative approach allows professionals to showcase their skills and experience while maintaining complete control over their identity until they're ready to reveal it.</p>
+          <p class="story-desc">Today, Hire22 has connected over 50,000 anonymous profiles with leading employers across 6 countries, reducing average connection time to just 22 hours. We're proud to be transforming how mid and senior professionals find their next big role—confidentially, efficiently, and on their own terms.</p>
           <a href="#" class="story-btn">EXPLORE OUR PLATFORM</a>
         </div>
         <div class="story-photo-block">
@@ -240,41 +253,36 @@
 <script>
 // Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
-const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-
 function toggleTheme() {
   document.body.classList.toggle('dark-theme');
   const isDark = document.body.classList.contains('dark-theme');
-  const newIcon = isDark ? '☀️' : '🌙';
-  themeToggle.textContent = newIcon;
-  mobileThemeToggle.textContent = newIcon;
+  themeToggle.textContent = isDark ? '☀️' : '🌙';
 }
-
 themeToggle.addEventListener('click', toggleTheme);
-mobileThemeToggle.addEventListener('click', toggleTheme);
 
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-
+const navbarOverlay = document.getElementById('navbar-overlay');
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
+  navbarOverlay.style.display = navMenu.classList.contains('active') ? 'block' : 'none';
 });
-
 // Close menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
+navMenu.querySelectorAll('.navbar-link').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
+    navbarOverlay.style.display = 'none';
   });
 });
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+// Close menu when clicking outside or on overlay
+window.addEventListener('click', (e) => {
+  if ((navbarOverlay.contains(e.target) && navbarOverlay.style.display === 'block') || (!hamburger.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active'))) {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
+    navbarOverlay.style.display = 'none';
   }
 });
 </script>
