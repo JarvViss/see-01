@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger Menu Test</title>
+    <link rel="stylesheet" href="about-us.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .test-info {
+            background: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .test-info h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .test-info p {
+            margin: 10px 0;
+        }
+        .test-info .highlight {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h2>Hamburger Menu Test</h2>
+        <p><strong>Instructions:</strong></p>
+        <p>1. Resize your browser window to be <span class="highlight">narrower than 900px</span></p>
+        <p>2. You should see a <span class="highlight">hamburger menu icon</span> (three horizontal lines) in the top-right corner</p>
+        <p>3. Click the hamburger icon to open the mobile menu</p>
+        <p>4. The menu should slide in from the right with navigation links</p>
+    </div>
+
+    <header class="header custom-navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="assets/hire22-logo.svg" alt="Hire22.ai Logo" class="logo">
+            </div>
+            <nav class="navbar-menu" id="nav-menu">
+                <a href="#" class="navbar-link">Why Hire22.ai</a>
+                <a href="#" class="navbar-link">About us</a>
+                <a href="#" class="navbar-link">Login</a>
+                <a href="#" class="navbar-link">Register</a>
+                <a href="#" class="navbar-contact-btn">Employer zone</a>
+            </nav>
+            <div class="navbar-overlay" id="navbar-overlay"></div>
+            <div class="navbar-contact-wrap desktop-only">
+                <a href="#" class="navbar-contact-btn">Employer zone</a>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div style="margin-top: 100px; padding: 20px;">
+        <h1>Test Content</h1>
+        <p>This is test content to verify the hamburger menu is working.</p>
+        <p>Resize your browser window to see the hamburger menu appear.</p>
+    </div>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        }
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navbarOverlay = document.getElementById('navbar-overlay');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            navbarOverlay.style.display = navMenu.classList.contains('active') ? 'block' : 'none';
+        });
+        
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('.navbar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                navbarOverlay.style.display = 'none';
+            });
+        });
+        
+        // Close menu when clicking outside or on overlay
+        window.addEventListener('click', (e) => {
+            if ((navbarOverlay.contains(e.target) && navbarOverlay.style.display === 'block') || (!hamburger.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active'))) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                navbarOverlay.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

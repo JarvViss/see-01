@@ -14,15 +14,15 @@
                 <img src="assets/hire22-logo.svg" alt="Hire22.ai Logo" class="logo">
             </div>
             <nav class="navbar-menu" id="nav-menu">
-                <a href="#" class="navbar-link">Services</a>
-                <a href="#" class="navbar-link">Industries</a>
-                <a href="#" class="navbar-link">Pricing</a>
-                <a href="#" class="navbar-link">Team</a>
-                <a href="#" class="navbar-link">FAQ</a>
+                <a href="#" class="navbar-link">Why Hire22.ai</a>
+                <a href="#" class="navbar-link">About us</a>
+                <a href="#" class="navbar-link">Login</a>
+                <a href="#" class="navbar-link">Register</a>
+                <a href="#" class="navbar-contact-btn">Employer zone</a>
             </nav>
             <div class="navbar-overlay" id="navbar-overlay"></div>
-            <div class="navbar-contact-wrap">
-                <a href="#" class="navbar-contact-btn">Contact</a>
+            <div class="navbar-contact-wrap desktop-only">
+                <a href="#" class="navbar-contact-btn">Employer zone</a>
             </div>
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -283,6 +283,23 @@ window.addEventListener('click', (e) => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
     navbarOverlay.style.display = 'none';
+  }
+});
+
+// Scroll detection for navbar background change (light mode only)
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.custom-navbar');
+  const isDarkTheme = document.body.classList.contains('dark-theme');
+  
+  if (!isDarkTheme) { // Only apply scroll effect in light mode
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  } else {
+    // Remove scrolled class when in dark mode
+    navbar.classList.remove('scrolled');
   }
 });
 </script>
